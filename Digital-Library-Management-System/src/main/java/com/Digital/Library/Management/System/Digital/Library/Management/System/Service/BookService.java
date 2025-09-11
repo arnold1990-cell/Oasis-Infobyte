@@ -3,12 +3,8 @@ package com.Digital.Library.Management.System.Digital.Library.Management.System.
 import com.Digital.Library.Management.System.Digital.Library.Management.System.Exceptions.BookAlreadyExistsException;
 import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Book;
 import com.Digital.Library.Management.System.Digital.Library.Management.System.Repository.BookRepository;
-import org.springframework.data.domain.Page;
-
 import org.springframework.stereotype.Service;
 
-
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

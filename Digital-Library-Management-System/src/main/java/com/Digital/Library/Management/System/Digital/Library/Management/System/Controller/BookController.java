@@ -22,7 +22,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    // -------------------- CREATE --------------------
+    // CREATE
     @PostMapping
     public ResponseEntity<?> createBook(@RequestBody Book book) {
         try {
@@ -35,7 +35,7 @@ public class BookController {
         }
     }
 
-    // -------------------- GET BY ID --------------------
+    // GET BY ID
     @GetMapping("/{id}")
     public ResponseEntity<?> getBookById(@PathVariable Long id) {
         Optional<Book> book = bookService.findById(id);
@@ -46,7 +46,7 @@ public class BookController {
         }
     }
 
-    // -------------------- GET BY ISBN --------------------
+    //  GET BY ISBN
     @GetMapping("/isbn/{isbn}")
     public ResponseEntity<?> getBookByIsbn(@PathVariable String isbn) {
         Optional<Book> book = bookService.findByIsbn(isbn);
@@ -57,24 +57,25 @@ public class BookController {
         }
     }
 
-    // -------------------- SEARCH BY TITLE --------------------
+    //  SEARCH BY TITLE
     @GetMapping("/search")
     public ResponseEntity<List<Book>> searchBooks(@RequestParam String query) {
         List<Book> books = bookService.searchByTitleSimple(query);
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-    // -------------------- GET ALL BOOKS --------------------
+    //  GET ALL BOOKS
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
         List<Book> books = bookService.findAll();
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
-    // -------------------- DELETE --------------------
+    // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable Long id) {
         bookService.deleteById(id);
         return new ResponseEntity<>("Delete operation completed", HttpStatus.OK);
     }
+
 }
