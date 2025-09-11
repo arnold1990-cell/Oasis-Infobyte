@@ -9,8 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface LoanRepository extends JpaRepository<Loan,Long> {
-    List<Loan> findByMemberAndStatus(Member m, String status);
-    List<Loan> findByDueDateBeforeAndStatus(LocalDate date, String status);
     List<Loan> findByMember(Member member);
     List<Loan> findByStatus(Status status);
 
