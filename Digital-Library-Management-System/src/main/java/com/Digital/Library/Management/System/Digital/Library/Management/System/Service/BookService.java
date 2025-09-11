@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,14 +58,32 @@ public class BookService {
         return bookRepository.findByIsbn(isbn);
     }
 
-    public Page<Book> findByTitleContainingIgnoreCase(String q, Pageable p) {
-        if (q == null || q.trim().isEmpty()) {
+    public List<Book> searchByTitleSimple(String query) {
+        if (query == null || query.trim().isEmpty()) {
             throw new IllegalArgumentException("Search query cannot be empty");
         }
 
-        String cleanedQuery = q.trim();
-        return bookRepository.findByTitleContainingIgnoreCase(cleanedQuery, p);
-    }
+        String cleanedQuery = query.trim().toLowerCase();
+
+        // Fetch all books
+        List<Book> allBooks = bookRepository.findAll();
+
+        // Filter books by title
+        List<Book> matchedBooks = new ArrayList<Book>();
+        for (Book book : allBooks) {
+            if (book.getTitle() != null && book.getTitle().toLowerCase().contains(cleanedQuery)) {
+                matchedBooks.add(book);
+            }
+        }
+
+        if (matchedBooks.isEmpty()) {
+            System.out.println("No books found for query: " + cleanedQuery);
+        }
+
+        return matchedBooks;
+
+
+}
 
 
 
