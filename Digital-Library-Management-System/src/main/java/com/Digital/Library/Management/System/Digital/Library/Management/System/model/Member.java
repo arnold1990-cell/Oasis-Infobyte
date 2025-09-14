@@ -1,4 +1,4 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Model;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.model;
 
 import com.Digital.Library.Management.System.Digital.Library.Management.System.Enums.Role;
 import jakarta.persistence.*;

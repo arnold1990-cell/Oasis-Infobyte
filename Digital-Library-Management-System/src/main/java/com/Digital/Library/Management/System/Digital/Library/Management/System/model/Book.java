@@ -1,4 +1,4 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Model;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.model;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,7 +1,7 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Service;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.service;
 
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Member;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Repository.MemberRepository;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Member;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,13 +17,13 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    // -------------------- SAVE MEMBER --------------------
+
     public <S extends Member> S save(S entity) {
         if (entity == null) {
             throw new RuntimeException("Invalid member");
         }
 
-        // Business rule: username must be unique
+
         Optional<Member> existing = memberRepository.findByUsername(entity.getUsername());
         if (existing.isPresent()) {
             throw new RuntimeException("Username '" + entity.getUsername() + "' is already taken.");
@@ -32,7 +32,6 @@ public class MemberService {
         return memberRepository.save(entity);
     }
 
-    //  FIND MEMBER BY ID
     public Optional<Member> findById(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("Member ID cannot be null");
@@ -40,7 +39,7 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
-    // FIND MEMBER BY USERNAME
+
     public Optional<Member> findByUsername(String username) {
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Username cannot be null or empty");
@@ -57,7 +56,7 @@ public class MemberService {
         return member;
     }
 
-    // FIND ALL MEMBERS
+
     public List<Member> findAll() {
         List<Member> members = memberRepository.findAll();
 
@@ -65,10 +64,10 @@ public class MemberService {
             System.out.println("No members found in the system.");
         }
 
-        // Business rule: return only active members
+
         List<Member> activeMembers = new ArrayList<>();
         for (Member member : members) {
-            if (member.isActive()) {  // assuming Member has isActive()
+            if (member.isActive()) {
                 activeMembers.add(member);
             }
         }
@@ -76,7 +75,7 @@ public class MemberService {
         return activeMembers;
     }
 
-    // DELETE MEMBER
+
     public void deleteById(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("Member ID cannot be null");
@@ -88,7 +87,6 @@ public class MemberService {
             return;
         }
 
-        // Business rule: only inactive members can be deleted
         if (member.get().isActive()) {
             System.out.println("Cannot delete active member with ID " + id);
             return;

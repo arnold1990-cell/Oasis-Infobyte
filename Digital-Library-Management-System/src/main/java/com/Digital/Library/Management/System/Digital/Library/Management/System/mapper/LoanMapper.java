@@ -1,7 +1,7 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Mapper;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.mapper;
 
-import com.Digital.Library.Management.System.Digital.Library.Management.System.DTO.LoanDto;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Loan;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.dto.LoanDto;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Loan;
 
 public class LoanMapper {
     public LoanDto loanDto(Loan loan){

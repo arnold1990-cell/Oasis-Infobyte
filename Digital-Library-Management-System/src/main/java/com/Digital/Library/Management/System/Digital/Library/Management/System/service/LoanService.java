@@ -1,9 +1,9 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Service;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.service;
 
 import com.Digital.Library.Management.System.Digital.Library.Management.System.Enums.Status;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Loan;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Member;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Repository.LoanRepository;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Loan;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Member;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,7 +21,7 @@ public class LoanService {
         this.loanRepository = loanRepository;
     }
 
-    // -------------------- ISSUE LOAN --------------------
+
     public Loan issueLoan(Member member, LocalDate issueDate, LocalDate dueDate) {
         if (member == null) {
             throw new IllegalArgumentException("Member cannot be null");
@@ -43,7 +43,7 @@ public class LoanService {
         return loanRepository.save(loan);
     }
 
-    // RETURN LOAN
+
     public Loan returnLoan(Long loanId, LocalDate returnDate) {
         Optional<Loan> optionalLoan = loanRepository.findById(loanId);
         if (optionalLoan.isEmpty()) {
@@ -59,7 +59,7 @@ public class LoanService {
         loan.setReturnDate(returnDate);
         loan.setStatus(Status.RETURNED);
 
-        // Calculate fine if overdue
+
         if (returnDate.isAfter(loan.getDueDate())) {
             long daysLate = returnDate.toEpochDay() - loan.getDueDate().toEpochDay();
             BigDecimal fine = BigDecimal.valueOf(daysLate).multiply(BigDecimal.valueOf(1)); // 1 unit per day late
@@ -69,7 +69,7 @@ public class LoanService {
         return loanRepository.save(loan);
     }
 
-    // FIND LOANS BY MEMBER
+
     public List<Loan> findLoansByMember(Member member) {
         if (member == null) {
             return new ArrayList<>();
@@ -77,15 +77,13 @@ public class LoanService {
         return loanRepository.findByMember(member);
     }
 
-    //  FIND LOANS BY STATUS
+
     public List<Loan> findLoansByStatus(Status status) {
         if (status == null) {
             return new ArrayList<>();
         }
         return loanRepository.findByStatus(status);
     }
-
-    //  DELETE LOAN
     public void deleteLoan(Long loanId) {
         Optional<Loan> loan = loanRepository.findById(loanId);
         if (loan.isEmpty()) {
@@ -97,7 +95,7 @@ public class LoanService {
         System.out.println("Loan with ID " + loanId + " deleted.");
     }
 
-    //  FIND ALL LOANS
+
     public List<Loan> findAll() {
         return loanRepository.findAll();
     }

@@ -1,8 +1,8 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Service;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.service;
 
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Exceptions.BookAlreadyExistsException;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Book;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Repository.BookRepository;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.exceptions.BookAlreadyExistsException;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Book;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -61,10 +61,8 @@ public class BookService {
 
         String cleanedQuery = query.trim().toLowerCase();
 
-        // Fetch all books
         List<Book> allBooks = bookRepository.findAll();
 
-        // Filter books by title
         List<Book> matchedBooks = new ArrayList<Book>();
         for (Book book : allBooks) {
             if (book.getTitle() != null && book.getTitle().toLowerCase().contains(cleanedQuery)) {
@@ -92,7 +90,6 @@ public class BookService {
     }
 
     public void deleteById(Long id) {
-        // 1. Check if the book exists
         Optional<Book> book = bookRepository.findById(id);
         if (book.isEmpty()) {
             System.out.println("Cannot delete: Book with ID " + id + " does not exist.");

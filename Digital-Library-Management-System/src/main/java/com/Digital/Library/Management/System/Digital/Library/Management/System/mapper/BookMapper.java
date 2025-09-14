@@ -1,7 +1,7 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Mapper;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.mapper;
 
-import com.Digital.Library.Management.System.Digital.Library.Management.System.DTO.BookDto;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Book;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.dto.BookDto;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Book;
 
 public class BookMapper {
     public BookDto bookDto(Book book){

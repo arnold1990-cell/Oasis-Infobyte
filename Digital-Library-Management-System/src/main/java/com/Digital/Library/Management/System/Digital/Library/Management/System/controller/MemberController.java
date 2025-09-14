@@ -1,7 +1,7 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Controller;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.controller;
 
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Member;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Service.MemberService;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Member;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,6 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    //  CREATE MEMBER
     @PostMapping
     public ResponseEntity<?> createMember(@RequestBody Member member) {
         try {
@@ -32,7 +31,7 @@ public class MemberController {
         }
     }
 
-    //  GET MEMBER BY ID
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getMemberById(@PathVariable Long id) {
         Optional<Member> member = memberService.findById(id);
@@ -43,7 +42,7 @@ public class MemberController {
         }
     }
 
-    //  GET MEMBER BY USERNAME
+
     @GetMapping("/username/{username}")
     public ResponseEntity<?> getMemberByUsername(@PathVariable String username) {
         Optional<Member> member = memberService.findByUsername(username);
@@ -54,14 +53,14 @@ public class MemberController {
         }
     }
 
-    // - GET ALL MEMBERS
+
     @GetMapping
     public ResponseEntity<List<Member>> getAllMembers() {
         List<Member> members = memberService.findAll();
         return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-    //  DELETE MEMBER
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteMember(@PathVariable Long id) {
         memberService.deleteById(id);

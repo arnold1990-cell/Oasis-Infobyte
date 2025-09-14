@@ -1,6 +1,4 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.DTO;
-
-import jakarta.persistence.Column;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.dto;
 
 public record BookDto(
         Long id,

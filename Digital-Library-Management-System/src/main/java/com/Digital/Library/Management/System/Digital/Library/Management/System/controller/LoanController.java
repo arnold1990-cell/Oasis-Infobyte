@@ -1,10 +1,10 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Controller;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.controller;
 
 import com.Digital.Library.Management.System.Digital.Library.Management.System.Enums.Status;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Loan;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Member;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Service.LoanService;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Service.MemberService;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Loan;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Member;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.service.LoanService;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class LoanController {
         this.memberService = memberService;
     }
 
-    // ISSUE LOAN
+
     @PostMapping("/issue")
     public ResponseEntity<?> issueLoan(
             @RequestParam Long memberId,
@@ -47,7 +47,7 @@ public class LoanController {
         return new ResponseEntity<>(loan, HttpStatus.CREATED);
     }
 
-    //  RETURN LOAN
+
     @PostMapping("/return/{loanId}")
     public ResponseEntity<?> returnLoan(
             @PathVariable Long loanId,
@@ -62,7 +62,7 @@ public class LoanController {
         }
     }
 
-    //  GET LOANS BY MEMBER
+
     @GetMapping("/member/{memberId}")
     public ResponseEntity<?> getLoansByMember(@PathVariable Long memberId) {
         Optional<Member> memberOpt = memberService.findById(memberId);
@@ -74,21 +74,19 @@ public class LoanController {
         return new ResponseEntity<>(loans, HttpStatus.OK);
     }
 
-    //  GET LOANS BY STATUS
+
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Loan>> getLoansByStatus(@PathVariable Status status) {
         List<Loan> loans = loanService.findLoansByStatus(status);
         return new ResponseEntity<>(loans, HttpStatus.OK);
     }
 
-    //  GET ALL LOANS
     @GetMapping
     public ResponseEntity<List<Loan>> getAllLoans() {
         List<Loan> loans = loanService.findAll();
         return new ResponseEntity<>(loans, HttpStatus.OK);
     }
 
-    //  DELETE LOAN
     @DeleteMapping("/{loanId}")
     public ResponseEntity<String> deleteLoan(@PathVariable Long loanId) {
         loanService.deleteLoan(loanId);

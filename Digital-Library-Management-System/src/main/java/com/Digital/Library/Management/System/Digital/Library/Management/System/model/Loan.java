@@ -1,4 +1,4 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Model;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.model;
 
 import com.Digital.Library.Management.System.Digital.Library.Management.System.Enums.Status;
 import jakarta.persistence.*;
@@ -19,7 +19,6 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Many loans → one member
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
@@ -36,7 +35,7 @@ public class Loan {
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal fineAmount = BigDecimal.ZERO;
 
-    @Enumerated(EnumType.STRING) // store enum as text (e.g. "ISSUED")
+    @Enumerated(EnumType.STRING)
     @Column( nullable = false, length = 20)
-    private Status status;  // ISSUED, RETURNED, LOST
+    private Status status;
 }

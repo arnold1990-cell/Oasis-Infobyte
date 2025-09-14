@@ -1,7 +1,7 @@
-package com.Digital.Library.Management.System.Digital.Library.Management.System.Mapper;
+package com.Digital.Library.Management.System.Digital.Library.Management.System.mapper;
 
-import com.Digital.Library.Management.System.Digital.Library.Management.System.DTO.MemberDto;
-import com.Digital.Library.Management.System.Digital.Library.Management.System.Model.Member;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.dto.MemberDto;
+import com.Digital.Library.Management.System.Digital.Library.Management.System.model.Member;
 
 public class MemberMapper {
     public MemberDto memberDto(Member member) {
