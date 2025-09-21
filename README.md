@@ -1,6 +1,6 @@
 Digital Library Management System
 
-A Digital Library Management System built with Spring Boot that automates library operations. The system provides a full set of features to manage books efficiently, including:
+A  Digital Library Management System built with Spring Boot as part of an Oasis Inforbyte internship task 3. that automates library operations. The system provides a full set of features to manage books efficiently, including:
 
 Add Books – Easily add new books to the library collection.
 
